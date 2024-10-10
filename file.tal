@@ -3,7 +3,8 @@
 |00 @System  &vector $2 &pad $6 &r $2 &g $2 &b $2
 |20 @Screen  &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
 %DRAW-PIXEL { #41 .Screen/pixel DEO } ( -- )
-%INC-X { .Screen/x DEI2 INC2 .Screen/x DEO2 } ( -- )
+%INC-X { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( -- )
+%
 
 |0100
       ( set colors )
@@ -15,8 +16,12 @@
       #0008 .Screen/x DEO2
       #0008 .Screen/y DEO2
 
-      ;arrow .Screen/addr DEO2
-      #01 .Screen/sprite DEO
+      ;arrow .Screen/addr DEO2 
+      #01 .Screen/sprite DEO INC-X
+      #02 .Screen/sprite DEO INC-X
+      #03 .Screen/sprite DEO INC-X
+      #04 .Screen/sprite DEO INC-X
+      
 BRK
 
 @arrow [ c0ff 30ff 0cff 03ff ] 
