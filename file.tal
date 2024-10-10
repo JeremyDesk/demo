@@ -15,10 +15,8 @@
       #0008 .Screen/x DEO2
       #0008 .Screen/y DEO2
 
-      DRAW-PIXEL INC-X
-      DRAW-PIXEL INC-X
-      DRAW-PIXEL INC-X
-      DRAW-PIXEL INC-X
-      DRAW-PIXEL INC-X
-      DRAW-PIXEL
-      
+      ;arrow .Screen/addr DEO2
+      #01 .Screen/sprite DEO
+BRK
+
+@arrow [c0ff 30ff 0cff 03ff]     
