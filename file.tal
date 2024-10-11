@@ -1,22 +1,33 @@
-(demo.tal )
+( demo.tal )
 
 |00 @System  &vector $2 &pad $6 &r $2 &g $2 &b $2
 |20 @Screen  &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
+|90 @Mouse  [ &vector $2 &x $2 &y $2 &state $1 &pad $3 &scrollx $2 &scrolly $2 ]
+
 %DRAW-PIXEL { #41 .Screen/pixel DEO } ( -- )
 %INC-X { .Screen/x DEI2 INC2 .Screen/x DEO2 } ( -- )
 
 |0100
       ( set colors )
       #2ce9 .System/r DEO2
-      #01c0 .System/g DEO2
+      #2ce5 .System/g DEO2
       #2ce5 .System/b DEO2
 
-      ( set coordinates )
-      #0008 .Screen/x DEO2
-      #0008 .Screen/y DEO2
+      ( define vectors )
+      ;on-mouse .Mouse/vector DEO2
 
       ;arrow .Screen/addr DEO2
+
+
+BRK
+
+@on-mouse ( -> )
+      .Mouse/x DEI2 .Screen/x DEO2
+      .Mouse/y DEI2 .Screen/y DEO2
+
       #01 .Screen/sprite DEO
+      BRK
+
 BRK
 
 @arrow [ c0ff 30ff 0cff 03ff ] 
