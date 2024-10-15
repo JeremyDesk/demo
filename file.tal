@@ -15,8 +15,15 @@
 
       ( define vectors )
       ;on-mouse .Mouse/vector DEO2
-
+      ;clear .Screen/addr DEO2
       ;arrow .Screen/addr DEO2
+      
+
+
+
+
+
+
 
 
 BRK
@@ -29,5 +36,5 @@ BRK
       BRK
 
 BRK
-
-@arrow [ c0ff 30ff 0cff 03ff ] 
+@clear [ 0000 0000 0000 0000 ]
+@arrow [ 1818 18ff ff18 1818 ] 
