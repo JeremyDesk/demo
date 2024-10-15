@@ -1,27 +1,31 @@
 (demo.tal )
 
 |00 @System  &vector $2 &pad $6 &r $2 &g $2 &b $2
-|20 @Screen  &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
+|10 @Console &vector $2 &read $1 &pad $5 &write $1 &error $1
+|20 @Screen  &vector $2 &width $2 &height  $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
+|80 @Controller [ &vector $2 &button $1 &key    $1 ]
 %DRAW-PIXEL { #41 .Screen/pixel DEO } ( -- )
 %INC-X { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( -- )
-%
 
 |0100
       ( set colors )
       #2ce9 .System/r DEO2
       #01c0 .System/g DEO2
       #2ce5 .System/b DEO2
-
       ( set coordinates )
       #0008 .Screen/x DEO2
       #0008 .Screen/y DEO2
 
-      ;arrow .Screen/addr DEO2 
-      #01 .Screen/sprite DEO INC-X
-      #02 .Screen/sprite DEO INC-X
+      ;arrow .Screen/addr DEO2
       #03 .Screen/sprite DEO INC-X
-      #04 .Screen/sprite DEO INC-X
-      
+
+      ;on-button .Controller/vector DEO2
+
 BRK
 
 @arrow [ c0ff 30ff 0cff 03ff ] 
+
+@on-button
+      #03 .Screen/sprite DEO INC-X
+      .Controller/key 80 SUB 
+      .Console/write DEO
