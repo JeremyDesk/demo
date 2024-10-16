@@ -13,28 +13,21 @@
       #2ce5 .System/g DEO2
       #2ce5 .System/b DEO2
 
-      ( define vectors )
+      ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
-      ;clear .Screen/addr DEO2
+
+      ( draw pointer thing )
       ;arrow .Screen/addr DEO2
-      
-
-
-
-
-
-
-
-
 BRK
 
 @on-mouse ( -> )
+      #40 .Screen/sprite DEO
+
       .Mouse/x DEI2 .Screen/x DEO2
       .Mouse/y DEI2 .Screen/y DEO2
 
-      #01 .Screen/sprite DEO
-      BRK
-
+      #4a .Screen/sprite DEO
 BRK
+
 @clear [ 0000 0000 0000 0000 ]
 @arrow [ 1818 18ff ff18 1818 ] 
