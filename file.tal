@@ -44,7 +44,6 @@ BRK
       ;arrow .Screen/addr DEO2
 BRK
 @on-button
-      ;box .Screen/addr DEO2
       .Controller/key DEI LIT "1 EQU 
       ,&c1 JCN
       .Controller/key DEI LIT "2 EQU 
@@ -54,19 +53,18 @@ BRK
       .Controller/key DEI LIT "4 EQU 
       ,&c4 JCN
       BRK
-
       &c1
-      #2c00 .System/r DEO2
-      #2c00 .System/g DEO2
-      #2c00 .System/b DEO2 BRK
+      #2b29 .System/r DEO2
+      #6b2e .System/g DEO2
+      #ac2c .System/b DEO2 BRK
       &c2
-      #2fef .System/r DEO2
-      #2fef .System/g DEO2
-      #2fef .System/b DEO2 BRK
+      #e455 .System/r DEO2
+      #65db .System/r DEO2
+      #6699 .System/b DEO2 BRK
       &c3
-      #2ce5 .System/r DEO2
-      #2ce5 .System/g DEO2
-      #2ce5 .System/b DEO2 BRK
+      #cc93 .System/r DEO2
+      #7b72 .System/r DEO2
+      #6962 .System/b DEO2 BRK
       &c4
       #2ce5 .System/r DEO2
       #2ce5 .System/g DEO2
