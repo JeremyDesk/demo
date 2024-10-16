@@ -13,6 +13,11 @@
       #2ce5 .System/g DEO2
       #2ce5 .System/b DEO2
 
+      ( set initial x,y coordinates )
+      #0008 .Screen/x DEO2
+      #0008 .Screen/y DEO2
+
+
       ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
 
@@ -37,6 +42,8 @@ BRK
       #1f .Screen/sprite DEO
       ;arrow .Screen/addr DEO2
 BRK
-
+@one  [ ff18 1818 1818 1c18 ]
+@two  [ ffc3 037e c0c0 c37e ]
+@three  [ 7ec3 c078 78c0 c37e ]
 @dot [ 0000 0018 1800 0000 ]
 @arrow [ 1818 18ff ff18 1818 ] 
