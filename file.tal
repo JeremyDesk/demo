@@ -16,8 +16,7 @@
       ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
 
-      ( draw pointer thing )
-      ;arrow .Screen/addr DEO2
+
 BRK
 
 @on-mouse ( -> )
@@ -29,12 +28,15 @@ BRK
       .Mouse/state DEI ,&pressed JCN
 
       #4a .Screen/sprite DEO
-
+      ;arrow .Screen/addr DEO2
       BRK
 
       &pressed
       #4f .Screen/sprite DEO
+      ;dot .Screen/addr DEO2
+      #1f .Screen/sprite DEO
+      ;arrow .Screen/addr DEO2
 BRK
 
-@clear [ 0000 0000 0000 0000 ]
+@dot [ 0000 0018 1800 0000 ]
 @arrow [ 1818 18ff ff18 1818 ] 
