@@ -4,6 +4,8 @@
 |20 @Screen  &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
 |90 @Mouse  [ &vector $2 &x $2 &y $2 &state $1 &pad $3 &scrollx $2 &scrolly $2 ]
 |80 @Controller [ &vector $2 &button $1 &key    $1 ]
+|30 @Audio0  [ &vector $2 &position $2 &output $1 &pad $3 &adsr $2 &length $2 &addr $2 &volume $1 &pitch $1 ]
+%PLAY-NOTE { .Audio0/pitch DEO } ( pitch -- )
 %R { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( ++X )
 %L { .Screen/x DEI2 #0009 SUB2 INC2 .Screen/x DEO2 } ( --X )
 %D { .Screen/y DEI2 #0007 ADD2 INC2 .Screen/y DEO2 } ( ++Y )
@@ -13,6 +15,12 @@
       #2ce5 .System/r DEO2
       #2ce5 .System/g DEO2
       #2ce5 .System/b DEO2
+
+      ( audio stuff )
+      ;saw-pcm .Audio0/addr DEO2 
+      #00f0 .Audio0/length DEO2 
+      #0500 .Audio0/adsr DEO2 
+      #ff .Audio0/volume DEO
 
       #0020 .Screen/x DEO2
       #0020 .Screen/y DEO2
@@ -31,15 +39,15 @@
 BRK
 
 @on-mouse ( -> )
+      ;arrow .Screen/addr DEO2
       #40 .Screen/sprite DEO
-
       .Mouse/x DEI2 .Screen/x DEO2
       .Mouse/y DEI2 .Screen/y DEO2
 
       .Mouse/state DEI ,&pressed JCN
 
       #4a .Screen/sprite DEO
-      ;arrow .Screen/addr DEO2
+
       BRK
 
       &pressed
@@ -49,6 +57,7 @@ BRK
       ;arrow .Screen/addr DEO2
 BRK
 @on-button
+      #3c PLAY-NOTE
       .Controller/key DEI LIT "1 EQU 
       ,&c1 JCN
       .Controller/key DEI LIT "2 EQU 
@@ -81,3 +90,20 @@ BRK
 @dot [ 0000 0018 1800 0000 ]
 @arrow [ 1818 18ff ff18 1818 ] 
 @box [ ff81 8181 8181 81ff ] 
+@saw-pcm
+	8282 8183 8384 8685 8888 8889 8a8b 8c8c
+	8e8e 8f90 9092 9193 9494 9596 9699 9899
+	9b9a 9c9c 9c9d 9ea0 a1a0 a2a2 a3a5 a4a6
+	a7a7 a9a8 a9aa aaac adad aeae b0b0 b1b3
+	b2b4 b5b5 b6b7 b9b8 b9bb babc bdbc bdbe
+	bfc1 bfc1 c3c1 c4c5 c5c6 c6c7 c9c7 cbca
+	cbcc cdcd cfcf d2d0 d2d2 d2d5 d4d5 d6d7
+	d8d8 d9dc d9df dadf dce1 dde5 dce6 dceb
+	cb1f 1b1e 1c21 1c21 1f23 2025 2127 2329
+	2529 2829 2a2b 2b2e 2d2f 302f 3231 3234
+	3334 3536 3836 3939 3a3b 3b3d 3e3d 3f40
+	4042 4242 4444 4646 4748 474a 4a4b 4d4c
+	4e4e 4f50 5052 5252 5554 5557 5759 5959
+	5b5b 5c5d 5d5f 5e60 6160 6264 6365 6566
+	6867 6969 6a6c 6c6d 6d6e 706f 7071 7174
+	7475 7576 7777 797a 7a7c 7b7c 7e7d 7f7f
