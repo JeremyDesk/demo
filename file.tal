@@ -30,6 +30,8 @@
       #32 .Screen/sprite DEO R R
       ;three .Screen/addr DEO2
       #33 .Screen/sprite DEO R R
+      ;four .Screen/addr DEO2
+      #31 .Screen/sprite DEO R R
       ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
 
@@ -57,7 +59,6 @@ BRK
       ;arrow .Screen/addr DEO2
 BRK
 @on-button
-      #3c PLAY-NOTE
       .Controller/key DEI LIT "1 EQU 
       ,&c1 JCN
       .Controller/key DEI LIT "2 EQU 
@@ -68,18 +69,22 @@ BRK
       ,&c4 JCN
       BRK
       &c1
+      #0c PLAY-NOTE
       #2b29 .System/r DEO2
       #6b2e .System/g DEO2
       #ac2c .System/b DEO2 BRK
       &c2
+      #1c PLAY-NOTE
       #e455 .System/r DEO2
       #65db .System/r DEO2
       #6699 .System/b DEO2 BRK
       &c3
+      #2c PLAY-NOTE
       #cc93 .System/r DEO2
       #7b72 .System/r DEO2
       #6962 .System/b DEO2 BRK
       &c4
+      #3c PLAY-NOTE
       #2ce5 .System/r DEO2
       #2ce5 .System/g DEO2
       #2ce5 .System/b DEO2 BRK
