@@ -17,14 +17,11 @@
       #0020 .Screen/x DEO2
       #0020 .Screen/y DEO2
       ;one .Screen/addr DEO2
-      #01 .Screen/sprite DEO 
-      R R
+      #31 .Screen/sprite DEO R R
       ;two .Screen/addr DEO2
-      #02 .Screen/sprite DEO 
-      R R
+      #32 .Screen/sprite DEO R R
       ;three .Screen/addr DEO2
-      #03 .Screen/sprite DEO 
-      R R
+      #33 .Screen/sprite DEO R R
       ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
 
