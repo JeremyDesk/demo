@@ -5,7 +5,10 @@
 |20 @Screen  &vector $2 &width $2 &height  $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
 |80 @Controller [ &vector $2 &button $1 &key    $1 ]
 %DRAW-PIXEL { #41 .Screen/pixel DEO } ( -- )
-%INC-X { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( -- )
+%L { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( ++X )
+%R { .Screen/x DEI2 #0009 SUB2 INC2 .Screen/x DEO2 } ( --X )
+%D { .Screen/y DEI2 #0007 ADD2 INC2 .Screen/y DEO2 } ( ++Y )
+%U { .Screen/y DEI2 #0009 SUB2 INC2 .Screen/y DEO2 } ( --Y )
 
 |0100
       ( set colors )
@@ -13,19 +16,43 @@
       #01c0 .System/g DEO2
       #2ce5 .System/b DEO2
       ( set coordinates )
-      #0008 .Screen/x DEO2
-      #0008 .Screen/y DEO2
+      #0020 .Screen/x DEO2
+      #0020 .Screen/y DEO2
 
       ;arrow .Screen/addr DEO2
-      #03 .Screen/sprite DEO INC-X
 
+      #01 .Screen/sprite DEO
       ;on-button .Controller/vector DEO2
 
 BRK
 
-@arrow [ c0ff 30ff 0cff 03ff ] 
+@arrow [ ff81 8181 8181 81ff ] 
 
 @on-button
-      #03 .Screen/sprite DEO INC-X
-      .Controller/key 80 SUB 
-      .Console/write DEO
+      .Controller/key DEI LIT "2 EQU 
+      ,&kW JCN
+      .Controller/key DEI LIT "1 EQU 
+      ,&kA JCN
+      .Controller/key DEI LIT "3 EQU 
+      ,&kS JCN
+      .Controller/key DEI LIT "4 EQU 
+      ,&kD JCN
+      BRK
+
+      &kW
+      #00 .Screen/sprite DEO U
+      #01 .Screen/sprite DEO BRK
+
+      &kA
+      #00 .Screen/sprite DEO R
+      #01 .Screen/sprite DEO BRK
+
+      &kS
+      #00 .Screen/sprite DEO D
+      #01 .Screen/sprite DEO BRK
+
+      &kD
+      #00 .Screen/sprite DEO L
+      #01 .Screen/sprite DEO BRK 
+      
+      
