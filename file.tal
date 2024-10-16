@@ -56,13 +56,13 @@ BRK
       BRK
 
       &c1
-      #0005 .System/r DEO2
-      #0005 .System/g DEO2
-      #0005 .System/b DEO2 BRK
+      #2c00 .System/r DEO2
+      #2c00 .System/g DEO2
+      #2c00 .System/b DEO2 BRK
       &c2
-      #fff5 .System/r DEO2
-      #fff5 .System/g DEO2
-      #fff5 .System/b DEO2 BRK
+      #2fef .System/r DEO2
+      #2fef .System/g DEO2
+      #2fef .System/b DEO2 BRK
       &c3
       #2ce5 .System/r DEO2
       #2ce5 .System/g DEO2
