@@ -26,7 +26,14 @@ BRK
       .Mouse/x DEI2 .Screen/x DEO2
       .Mouse/y DEI2 .Screen/y DEO2
 
+      .Mouse/state DEI ,&pressed JCN
+
       #4a .Screen/sprite DEO
+
+      BRK
+
+      &pressed
+      #4f .Screen/sprite DEO
 BRK
 
 @clear [ 0000 0000 0000 0000 ]
