@@ -87,6 +87,7 @@ BRK
 @one  [ ff18 1818 1818 1c18 ]
 @two  [ ffc3 037e c0c0 c37e ]
 @three  [ 7ec3 c078 78c0 c37e ]
+@four  [ f060 60ff 6366 7c78 ]
 @dot [ 0000 0018 1800 0000 ]
 @arrow [ 1818 18ff ff18 1818 ] 
 @box [ ff81 8181 8181 81ff ] 
