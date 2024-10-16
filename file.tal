@@ -6,10 +6,10 @@
 |80 @Controller [ &vector $2 &button $1 &key    $1 ]
 |30 @Audio0  [ &vector $2 &position $2 &output $1 &pad $3 &adsr $2 &length $2 &addr $2 &volume $1 &pitch $1 ]
 %PLAY-NOTE { .Audio0/pitch DEO } ( pitch -- )
-%R { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( ++X )
-%L { .Screen/x DEI2 #0009 SUB2 INC2 .Screen/x DEO2 } ( --X )
-%D { .Screen/y DEI2 #0007 ADD2 INC2 .Screen/y DEO2 } ( ++Y )
-%U { .Screen/y DEI2 #0009 SUB2 INC2 .Screen/y DEO2 } ( --Y )
+%R { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( +X )
+%L { .Screen/x DEI2 #0009 SUB2 INC2 .Screen/x DEO2 } ( -X )
+%D { .Screen/y DEI2 #0007 ADD2 INC2 .Screen/y DEO2 } ( +Y )
+%U { .Screen/y DEI2 #0009 SUB2 INC2 .Screen/y DEO2 } ( -Y )
 |0100
       ( set colors )
       #2ce5 .System/r DEO2
@@ -25,13 +25,13 @@
       #0020 .Screen/x DEO2
       #0020 .Screen/y DEO2
       ;one .Screen/addr DEO2
-      #31 .Screen/sprite DEO R R
+      #33 .Screen/sprite DEO R R
       ;two .Screen/addr DEO2
-      #32 .Screen/sprite DEO R R
+      #33 .Screen/sprite DEO R R
       ;three .Screen/addr DEO2
       #33 .Screen/sprite DEO R R
       ;four .Screen/addr DEO2
-      #31 .Screen/sprite DEO R R
+      #33 .Screen/sprite DEO R R
       ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
 
@@ -43,8 +43,9 @@ BRK
 @on-mouse ( -> )
       ;arrow .Screen/addr DEO2
       #40 .Screen/sprite DEO
-      .Mouse/x DEI2 .Screen/x DEO2
-      .Mouse/y DEI2 .Screen/y DEO2
+
+      .Mouse/x DEI2 .mouse_temp/x DEO2
+      .Mouse/y DEI2 .mouse_temp/y DEO2
 
       .Mouse/state DEI ,&pressed JCN
 
@@ -70,19 +71,19 @@ BRK
       BRK
       &c1
       #0c PLAY-NOTE
-      #2b29 .System/r DEO2
-      #6b2e .System/g DEO2
-      #ac2c .System/b DEO2 BRK
+      #37de .System/r DEO2
+      #59c9 .System/g DEO2
+      #3575 .System/b DEO2 BRK
       &c2
       #1c PLAY-NOTE
-      #e455 .System/r DEO2
-      #65db .System/r DEO2
-      #6699 .System/b DEO2 BRK
+      #48bc .System/r DEO2
+      #2235 .System/g DEO2
+      #5545 .System/b DEO2 BRK
       &c3
       #2c PLAY-NOTE
-      #cc93 .System/r DEO2
-      #7b72 .System/r DEO2
-      #6962 .System/b DEO2 BRK
+      #036d .System/r DEO2
+      #169c .System/g DEO2
+      #38aa .System/b DEO2 BRK
       &c4
       #3c PLAY-NOTE
       #2ce5 .System/r DEO2
@@ -113,3 +114,5 @@ BRK
 	5b5b 5c5d 5d5f 5e60 6160 6264 6365 6566
 	6867 6969 6a6c 6c6d 6d6e 706f 7071 7174
 	7475 7576 7777 797a 7a7c 7b7c 7e7d 7f7f
+
+@mouse_temp  &x $2 &y $2
