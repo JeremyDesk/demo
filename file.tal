@@ -4,19 +4,27 @@
 |20 @Screen  &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
 |90 @Mouse  [ &vector $2 &x $2 &y $2 &state $1 &pad $3 &scrollx $2 &scrolly $2 ]
 |80 @Controller [ &vector $2 &button $1 &key    $1 ]
-%L { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( ++X )
-%R { .Screen/x DEI2 #0009 SUB2 INC2 .Screen/x DEO2 } ( --X )
+%R { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( ++X )
+%L { .Screen/x DEI2 #0009 SUB2 INC2 .Screen/x DEO2 } ( --X )
 %D { .Screen/y DEI2 #0007 ADD2 INC2 .Screen/y DEO2 } ( ++Y )
 %U { .Screen/y DEI2 #0009 SUB2 INC2 .Screen/y DEO2 } ( --Y )
-
 |0100
       ( set colors )
       #2ce5 .System/r DEO2
       #2ce5 .System/g DEO2
       #2ce5 .System/b DEO2
 
-
-
+      #0020 .Screen/x DEO2
+      #0020 .Screen/y DEO2
+      ;one .Screen/addr DEO2
+      #01 .Screen/sprite DEO 
+      R R
+      ;two .Screen/addr DEO2
+      #02 .Screen/sprite DEO 
+      R R
+      ;three .Screen/addr DEO2
+      #03 .Screen/sprite DEO 
+      R R
       ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
 
