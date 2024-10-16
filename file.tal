@@ -3,9 +3,11 @@
 |00 @System  &vector $2 &pad $6 &r $2 &g $2 &b $2
 |20 @Screen  &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1
 |90 @Mouse  [ &vector $2 &x $2 &y $2 &state $1 &pad $3 &scrollx $2 &scrolly $2 ]
-
-%DRAW-PIXEL { #41 .Screen/pixel DEO } ( -- )
-%INC-X { .Screen/x DEI2 INC2 .Screen/x DEO2 } ( -- )
+|80 @Controller [ &vector $2 &button $1 &key    $1 ]
+%L { .Screen/x DEI2 #0007 ADD2 INC2 .Screen/x DEO2 } ( ++X )
+%R { .Screen/x DEI2 #0009 SUB2 INC2 .Screen/x DEO2 } ( --X )
+%D { .Screen/y DEI2 #0007 ADD2 INC2 .Screen/y DEO2 } ( ++Y )
+%U { .Screen/y DEI2 #0009 SUB2 INC2 .Screen/y DEO2 } ( --Y )
 
 |0100
       ( set colors )
@@ -21,6 +23,8 @@
       ( get mouse position )
       ;on-mouse .Mouse/vector DEO2
 
+      ( keyboard press function )
+      ;on-button .Controller/vector DEO2
 
 BRK
 
@@ -42,8 +46,36 @@ BRK
       #1f .Screen/sprite DEO
       ;arrow .Screen/addr DEO2
 BRK
+@on-button
+      ;box .Screen/addr DEO2
+      .Controller/key DEI LIT "2 EQU 
+      ,&kW JCN
+      .Controller/key DEI LIT "1 EQU 
+      ,&kA JCN
+      .Controller/key DEI LIT "3 EQU 
+      ,&kS JCN
+      .Controller/key DEI LIT "4 EQU 
+      ,&kD JCN
+      BRK
+
+      &kW
+      #00 .Screen/sprite DEO U
+      #01 .Screen/sprite DEO BRK
+
+      &kA
+      #00 .Screen/sprite DEO R
+      #01 .Screen/sprite DEO BRK
+
+      &kS
+      #00 .Screen/sprite DEO D
+      #01 .Screen/sprite DEO BRK
+
+      &kD
+      #00 .Screen/sprite DEO L
+      #01 .Screen/sprite DEO BRK 
 @one  [ ff18 1818 1818 1c18 ]
 @two  [ ffc3 037e c0c0 c37e ]
 @three  [ 7ec3 c078 78c0 c37e ]
 @dot [ 0000 0018 1800 0000 ]
 @arrow [ 1818 18ff ff18 1818 ] 
+@box [ ff81 8181 8181 81ff ] 
