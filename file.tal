@@ -11,13 +11,10 @@
 
 |0100
       ( set colors )
-      #2ce9 .System/r DEO2
+      #2ce5 .System/r DEO2
       #2ce5 .System/g DEO2
       #2ce5 .System/b DEO2
 
-      ( set initial x,y coordinates )
-      #0008 .Screen/x DEO2
-      #0008 .Screen/y DEO2
 
 
       ( get mouse position )
@@ -48,31 +45,33 @@ BRK
 BRK
 @on-button
       ;box .Screen/addr DEO2
-      .Controller/key DEI LIT "2 EQU 
-      ,&kW JCN
       .Controller/key DEI LIT "1 EQU 
-      ,&kA JCN
+      ,&c1 JCN
+      .Controller/key DEI LIT "2 EQU 
+      ,&c2 JCN
       .Controller/key DEI LIT "3 EQU 
-      ,&kS JCN
+      ,&c3 JCN
       .Controller/key DEI LIT "4 EQU 
-      ,&kD JCN
+      ,&c4 JCN
       BRK
 
-      &kW
-      #00 .Screen/sprite DEO U
-      #01 .Screen/sprite DEO BRK
+      &c1
+      #0005 .System/r DEO2
+      #0005 .System/g DEO2
+      #0005 .System/b DEO2 BRK
+      &c2
+      #fff5 .System/r DEO2
+      #fff5 .System/g DEO2
+      #fff5 .System/b DEO2 BRK
+      &c3
+      #2ce5 .System/r DEO2
+      #2ce5 .System/g DEO2
+      #2ce5 .System/b DEO2 BRK
+      &c4
+      #2ce5 .System/r DEO2
+      #2ce5 .System/g DEO2
+      #2ce5 .System/b DEO2 BRK
 
-      &kA
-      #00 .Screen/sprite DEO R
-      #01 .Screen/sprite DEO BRK
-
-      &kS
-      #00 .Screen/sprite DEO D
-      #01 .Screen/sprite DEO BRK
-
-      &kD
-      #00 .Screen/sprite DEO L
-      #01 .Screen/sprite DEO BRK 
 @one  [ ff18 1818 1818 1c18 ]
 @two  [ ffc3 037e c0c0 c37e ]
 @three  [ 7ec3 c078 78c0 c37e ]
