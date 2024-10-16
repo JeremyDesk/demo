@@ -44,8 +44,8 @@ BRK
       ;arrow .Screen/addr DEO2
       #40 .Screen/sprite DEO
 
-      .Mouse/x DEI2 .mouse_temp/x DEO2
-      .Mouse/y DEI2 .mouse_temp/y DEO2
+      .Mouse/y DEI2 .Screen/y DEO2
+      .Mouse/x DEI2 .Screen/x DEO2
 
       .Mouse/state DEI ,&pressed JCN
 
@@ -115,4 +115,4 @@ BRK
 	6867 6969 6a6c 6c6d 6d6e 706f 7071 7174
 	7475 7576 7777 797a 7a7c 7b7c 7e7d 7f7f
 
-@mouse_temp  &x $2 &y $2
+@mouse_temp [ &x $2 &y $2 ]
