@@ -1,8 +1,5 @@
 # UXN Demo
-
-------------------------------
-   xXx_Th3_C0D3_P1R4T32_xXx
-------------------------------
+xXx_Th3_C0D3_P1R4T32_xXx
 
 A simple demo using uxn that does a couple of things:
 1. it tracks the mouse cursor and draws a line while it is being pressed.
